@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>SC.API.CleanArchitecture.Domain</RootNamespace>
+    <AssemblyName>SC.API.CleanArchitecture.Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\AspNetRole.cs" />
+    <Compile Remove="Entities\AspNetRoleClaim.cs" />
+    <Compile Remove="Entities\AspNetUser.cs" />
+    <Compile Remove="Entities\AspNetUserClaim.cs" />
+    <Compile Remove="Entities\AspNetUserLogin.cs" />
+    <Compile Remove="Entities\AspNetUserRole.cs" />
+    <Compile Remove="Entities\AspNetUserToken.cs" />
+    <Compile Remove="Entities\ConstructionContractualParty.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.5" />
+  </ItemGroup>
+
+</Project>

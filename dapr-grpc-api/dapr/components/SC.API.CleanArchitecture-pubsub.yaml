@@ -1,0 +1,16 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+  namespace: default
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+      # Kafka broker connection setting
+    - name: brokers
+      value: "broker:29092"
+    - name: authRequired
+      value: "false"
+    - name: maxMessageBytes
+      value: 2048

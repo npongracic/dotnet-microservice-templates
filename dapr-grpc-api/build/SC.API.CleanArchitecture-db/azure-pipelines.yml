@@ -1,0 +1,61 @@
+trigger:
+  branches:
+    include: 
+      - master
+  paths: 
+    include: 
+      - src/Infrastructure/Persistence/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  SQLDbContext: 'ApplicationDbContext'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    version: '5.0.0'
+
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '$(Build.SourcesDirectory)/src/**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: 'BuildingBlocks/building-blocks.internal'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '$(Build.SourcesDirectory)/src/**/*.csproj'
+    arguments: '--no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: Install EF Core Tools
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'install --global dotnet-ef'
+
+- task: DotNetCoreCLI@2
+  displayName: Verify tools installation
+  inputs:
+    command: 'custom'
+    custom: 'ef'
+    arguments: '-v'
+
+- task: DotNetCoreCLI@2
+  displayName: Build migration scripts
+  inputs:
+    command: 'custom'
+    custom: 'ef'
+    arguments: 'migrations script 0 --project "$(Build.SourcesDirectory)/src/Infrastructure" -s "$(Build.SourcesDirectory)/src/SC.API.CleanArchitecture.Web" -o "$(Build.ArtifactStagingDirectory)/migrations/migrations.sql" --no-build -i --verbose --context "ApplicationDbContext"'
+  
+- task: PublishBuildArtifacts@1
+  displayName: Publish artifacts
+  inputs: 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/migrations' # dist or build files
+    ArtifactName: 'migrations.sql' 
+

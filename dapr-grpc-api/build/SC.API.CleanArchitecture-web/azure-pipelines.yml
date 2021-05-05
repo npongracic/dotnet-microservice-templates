@@ -1,0 +1,80 @@
+trigger:
+  branches:
+    include: 
+      - master
+      - develop
+  paths: 
+    include: 
+      - src/SC.API.CleanArchitecture.Web/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarQube OS'
+    scannerMode: 'MSBuild'
+    projectKey: 'SC.API.CleanArchitecture.Web'
+    projectName: 'SC.API.CleanArchitecture.Web'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+- task: UseDotNet@2
+  displayName: Use .NET 5.0
+  inputs:
+    version: '5.0.0'
+
+#- task: DotNetCoreCLI@2
+#  displayName: Install EF Core tools
+#  inputs:
+#    command: 'custom'
+#    custom: 'tool'
+#    arguments: 'install --global dotnet-ef'
+
+- task: DotNetCoreCLI@2
+  displayName: Restore API
+  inputs:
+    command: restore
+    projects: '$(Build.SourcesDirectory)/src/**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: 'BuildingBlocks/building-blocks.internal'
+- task: DotNetCoreCLI@2
+  displayName: Build API
+  inputs:
+    command: build
+    projects: '$(Build.SourcesDirectory)/src/**/*.csproj'
+    arguments: '--no-restore'
+- task: SonarQubeAnalyze@4
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+- task: DotNetCoreCLI@2
+  displayName: Build migration scripts
+  inputs:
+    command: 'custom'
+    custom: 'ef'
+    arguments: 'migrations script 0 --project "$(Build.SourcesDirectory)/src/Infrastructure" -s "$(Build.SourcesDirectory)/src/SC.API.CleanArchitecture.Web" -o "$(Build.ArtifactStagingDirectory)/migrations/migrations.sql" --no-build -i --verbose --context "ApplicationDbContext"'
+- task: PublishBuildArtifacts@1
+  displayName: Publish migration artifacts
+  inputs: 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/migrations' # dist or build files
+    ArtifactName: 'migrations.sql' 
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Web'
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--output $(Build.StagingDirectory)/web/SC.API.CleanArchitecture --no-build'
+    zipAfterPublish: false
+    modifyOutputPath: false
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.StagingDirectory)/web/SC.API.CleanArchitecture'
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/SC.API.CleanArchitecture.zip'
+- task: PublishBuildArtifacts@1
+  displayName: Publish web artifacts
+  inputs: 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/SC.API.CleanArchitecture.zip' # dist or build files
+    ArtifactName: 'web' 
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))

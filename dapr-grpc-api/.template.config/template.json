@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Combis",
+    "classifications": [ "Dapr", "CQRS", "Microservices" ],
+    "identity": "SC.API.CleanArchitecture",
+    "name": "Dapr API microservice template",
+    "shortName": "sc-api-ca",
+    "sourceName": "SC.API.CleanArchitecture",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }

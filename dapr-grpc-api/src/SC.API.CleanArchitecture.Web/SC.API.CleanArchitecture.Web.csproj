@@ -1,0 +1,193 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>SC.API.CleanArchitecture.API.Web</RootNamespace>
+    <AssemblyName>SC.API.CleanArchitecture.API.Web</AssemblyName>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>true</IsPackable>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>567619d9-33a9-47b6-bcfd-913e65a18952</UserSecretsId>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClientApp\**" />
+    <Compile Remove="Pages\**" />
+    <Content Remove="ClientApp\**" />
+    <Content Remove="Pages\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
+    <EmbeddedResource Remove="Pages\**" />
+    <EntityDeploy Remove="Pages\**" />
+    <None Remove="ClientApp\**" />
+    <None Remove="Pages\**" />
+    <TypeScriptCompile Remove="ClientApp\**" />
+    <TypeScriptCompile Remove="Pages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\TokenController.cs" />
+    <Compile Remove="Services\ConsumerService.cs" />
+    <Compile Remove="Services\ViewRenderService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapr.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.0.4" />
+    <PackageReference Include="Google.Api.CommonProtos" Version="2.3.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.15.8" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.37.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.37.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.37.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.5" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.9.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.2.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NSwag.AspNetCore" Version="13.10.9" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.10.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    --><!-- Don't publish the SPA source files, but do show them in the project files list --><!--
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\components\**" />
+    <Content Remove="ClientApp\src\constants\**" />
+    <Content Remove="ClientApp\src\enduser\modules\fee copy\**" />
+    <Content Remove="ClientApp\src\shared\translations\hr\**" />
+    <Content Remove="ClientApp\src\views\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\components\**" />
+    <None Remove="ClientApp\src\constants\**" />
+    <None Remove="ClientApp\src\enduser\modules\fee copy\**" />
+    <None Remove="ClientApp\src\shared\translations\hr\**" />
+    <None Remove="ClientApp\src\views\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClientApp\src\components\**" />
+    <Compile Remove="ClientApp\src\constants\**" />
+    <Compile Remove="ClientApp\src\enduser\modules\fee copy\**" />
+    <Compile Remove="ClientApp\src\shared\translations\hr\**" />
+    <Compile Remove="ClientApp\src\views\**" />
+    <EmbeddedResource Remove="ClientApp\src\components\**" />
+    <EmbeddedResource Remove="ClientApp\src\constants\**" />
+    <EmbeddedResource Remove="ClientApp\src\enduser\modules\fee copy\**" />
+    <EmbeddedResource Remove="ClientApp\src\shared\translations\hr\**" />
+    <EmbeddedResource Remove="ClientApp\src\views\**" />
+    <TypeScriptCompile Remove="ClientApp\node_modules\**" />
+    <TypeScriptCompile Remove="ClientApp\src\components\**" />
+    <TypeScriptCompile Remove="ClientApp\src\constants\**" />
+    <TypeScriptCompile Remove="ClientApp\src\enduser\modules\fee copy\**" />
+    <TypeScriptCompile Remove="ClientApp\src\shared\translations\hr\**" />
+    <TypeScriptCompile Remove="ClientApp\src\views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\enduser\modules\fee copy\models\fee.ts" />
+    <None Remove="ClientApp\src\enduser\modules\fee copy\routes\index.ts" />
+    <None Remove="ClientApp\src\enduser\modules\fee copy\services\index.ts" />
+    <None Remove="ClientApp\src\enduser\modules\fee copy\translations\hr\index.ts" />
+    <None Remove="ClientApp\src\enduser\modules\fee copy\views\Fees.vue" />
+    <None Remove="ClientApp\src\plugins\i18n.ts" />
+    <None Remove="ClientApp\src\shared\hooks\useCounter.ts" />
+  </ItemGroup>  
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\admin\modules\todo\components\" />
+    <Folder Include="ClientApp\src\admin\modules\todo\store\" />
+    <Folder Include="ClientApp\src\enduser\modules\todo\components\" />
+    <Folder Include="ClientApp\src\enduser\modules\todo\store\" />
+  </ItemGroup>-->  
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\building-blocks\event-bus-dapr\BuildingBlocks.EventBus\BuildingBlocks.EventBus.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>  
+
+  <ItemGroup>
+    <Folder Include="wwwroot\api\" />
+  </ItemGroup>  
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>  
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!--<Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">-->
+  <Target Name="NSwag" AfterTargets="Build">
+    <Copy SourceFiles="@(Reference)" DestinationFolder="$(OutDir)References" />
+    <RemoveDir Directories="$(OutDir)References" />
+  </Target>
+
+  <!--<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    --><!-- Ensure Node.js is installed --><!--
+    <Exec Command="node -REMOVE THIS TEXT AFTER UNCOMMENT-version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    --><!-- As part of publishing, ensure the JS resources are freshly built in production mode --><!--
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    --><!-- Include the newly-built files in the publish output --><!--
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>-->
+
+</Project>

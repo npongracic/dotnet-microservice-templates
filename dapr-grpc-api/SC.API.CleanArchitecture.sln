@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{268C523E-6574-43AA-98BA-F1DC8C66585D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC.API.CleanArchitecture.Web", "src\SC.API.CleanArchitecture.Web\SC.API.CleanArchitecture.Web.csproj", "{5BF7B28E-6A6B-4235-90E3-8E781DE18EBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{FEA60A9E-5ACB-46E4-AFCE-2848AD7541CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{D1E8091A-2546-40DF-ABDA-83E12F8E6A78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{84059C42-DD4A-4498-A22A-EF9ED2E29DDA}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DB6BB4C1-31C7-4EE7-8C41-BCA67B26C4EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F9A9290-43CE-4C4B-AC31-76F480AF60D2}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{BB9C86CA-96AD-43E0-AB27-798966F0695F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{BCD343C2-3624-4600-B6F8-7C784B6158DF}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\SC.API.CleanArchitecture-pubsub.yaml = dapr\components\SC.API.CleanArchitecture-pubsub.yaml
+		dapr\components\subscription.yaml = dapr\components\subscription.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{C7E5139A-EF75-4ACF-9F86-213962B7C38C}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\configuration\SC.API.CleanArchitecture-config.yaml = dapr\configuration\SC.API.CleanArchitecture-config.yaml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.EventBus", "..\building-blocks\event-bus-dapr\BuildingBlocks.EventBus\BuildingBlocks.EventBus.csproj", "{43312593-5042-49B4-AEF4-6D95213FF68F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BF7B28E-6A6B-4235-90E3-8E781DE18EBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF7B28E-6A6B-4235-90E3-8E781DE18EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF7B28E-6A6B-4235-90E3-8E781DE18EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF7B28E-6A6B-4235-90E3-8E781DE18EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA60A9E-5ACB-46E4-AFCE-2848AD7541CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA60A9E-5ACB-46E4-AFCE-2848AD7541CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA60A9E-5ACB-46E4-AFCE-2848AD7541CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA60A9E-5ACB-46E4-AFCE-2848AD7541CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1E8091A-2546-40DF-ABDA-83E12F8E6A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E8091A-2546-40DF-ABDA-83E12F8E6A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E8091A-2546-40DF-ABDA-83E12F8E6A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E8091A-2546-40DF-ABDA-83E12F8E6A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84059C42-DD4A-4498-A22A-EF9ED2E29DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84059C42-DD4A-4498-A22A-EF9ED2E29DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84059C42-DD4A-4498-A22A-EF9ED2E29DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84059C42-DD4A-4498-A22A-EF9ED2E29DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6BB4C1-31C7-4EE7-8C41-BCA67B26C4EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6BB4C1-31C7-4EE7-8C41-BCA67B26C4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6BB4C1-31C7-4EE7-8C41-BCA67B26C4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6BB4C1-31C7-4EE7-8C41-BCA67B26C4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43312593-5042-49B4-AEF4-6D95213FF68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43312593-5042-49B4-AEF4-6D95213FF68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43312593-5042-49B4-AEF4-6D95213FF68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43312593-5042-49B4-AEF4-6D95213FF68F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5BF7B28E-6A6B-4235-90E3-8E781DE18EBB} = {268C523E-6574-43AA-98BA-F1DC8C66585D}
+		{FEA60A9E-5ACB-46E4-AFCE-2848AD7541CB} = {268C523E-6574-43AA-98BA-F1DC8C66585D}
+		{D1E8091A-2546-40DF-ABDA-83E12F8E6A78} = {268C523E-6574-43AA-98BA-F1DC8C66585D}
+		{84059C42-DD4A-4498-A22A-EF9ED2E29DDA} = {268C523E-6574-43AA-98BA-F1DC8C66585D}
+		{BCD343C2-3624-4600-B6F8-7C784B6158DF} = {BB9C86CA-96AD-43E0-AB27-798966F0695F}
+		{C7E5139A-EF75-4ACF-9F86-213962B7C38C} = {BB9C86CA-96AD-43E0-AB27-798966F0695F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC282C7F-B719-40F4-BC96-6797DC987D88}
+	EndGlobalSection
+EndGlobal

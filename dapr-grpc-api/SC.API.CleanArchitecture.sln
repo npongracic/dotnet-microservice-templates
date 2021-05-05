@@ -24,8 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{BB9C86CA-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{BCD343C2-3624-4600-B6F8-7C784B6158DF}"
 	ProjectSection(SolutionItems) = preProject
+		dapr\components\SC.API.CleanArchitecture-pubsub-subscription.yaml = dapr\components\SC.API.CleanArchitecture-pubsub-subscription.yaml
 		dapr\components\SC.API.CleanArchitecture-pubsub.yaml = dapr\components\SC.API.CleanArchitecture-pubsub.yaml
-		dapr\components\subscription.yaml = dapr\components\subscription.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{C7E5139A-EF75-4ACF-9F86-213962B7C38C}"

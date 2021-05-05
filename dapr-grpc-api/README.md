@@ -18,18 +18,12 @@ This is a solution template for creating a ASP.NET Core API service following th
 
 ## Getting Started
 
-The easiest way to get started is to install the [NuGet package](https://www.nuget.org/packages/Clean.Architecture.Solution.Template) and run `dotnet new ca-sln`:
-
 1. Install the latest [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
-2. Install the latest [Node.js LTS](https://nodejs.org/en/)
-3. Run `dotnet new --install Clean.Architecture.Solution.Template` to install the project template
-4. Create a folder for your solution and cd into it (the template will use it as project name)
-5. Run `dotnet new ca-sln` to create a new project
-6. Navigate to `src/WebUI/ClientApp` and run `npm install`
-7. Navigate to `src/WebUI/ClientApp` and run `npm start` to launch the front end (Angular)
-8. Navigate to `src/WebUI` and run `dotnet run` to launch the back end (ASP.NET Core Web API)
-
-Check out my [blog post](https://jasontaylor.dev/clean-architecture-getting-started/) for more information.
+2. Position yourself into the repository root
+3. Run `dotnet new --install .` to install the project template
+4. Run `dotnet new --install sc-api-ca -n SampleProject -o .\SampleProject` to create a new project
+5. Or optionally, create a folder for your solution and cd into it (the template will use it as project name)
+6. Navigate to `src/SampleProject.Web` and run `dotnet run` to launch the back end (ASP.NET Core Web API)
 
 ### Docker Configuration
 
@@ -38,8 +32,7 @@ Then open http://localhost:5006/api in your browser.
 
 ### Database Configuration
 
-The template is configured to use PostgreSQL database by default thats running in Docker. This ensures that all users will be able to run the solution without needing to set up additional infrastructure (e.g. installing PostgreSQL).
-If you would like to use a different database, verify that the **DefaultConnection** connection string within **appsettings.json** points to a valid database server instance. 
+The template is configured to use PostgreSQL database by default thats running in Docker. This ensures that all users will be able to run the solution without needing to set up additional infrastructure (e.g. installing PostgreSQL). If you would like to use a different database, verify that the **DefaultConnection** connection string within **appsettings.json** points to a valid database server instance. 
 
 When you run the application the database will be automatically created (if necessary) and the latest migrations will be applied.
 
@@ -48,16 +41,16 @@ When you run the application the database will be automatically created (if nece
 To use `dotnet-ef` for your migrations please add the following flags to your command (values assume you are executing from repository root)
 
 * `--project src/Infrastructure` (optional if in this folder)
-* `--startup-project src/<YOUR_PROJECT_NAME>Web`
+* `--startup-project src/<YOUR_PROJECT_NAME>.Web`
 * `--output-dir Persistence/Migrations`
 
 For example, to add a new migration from the root folder:
 
- `dotnet ef migrations add "SampleMigration" --project src\Infrastructure --startup-project src\SmartCity.Web --output-dir Persistence\Migrations`
+ `dotnet ef migrations add "SampleMigration" --project src\Infrastructure --startup-project src\SC.API.CleanArchitecture.Web --output-dir Persistence\Migrations`
 
 If you're using Package Manager Console, running the migrations is a bit different:
 
-`Add-Migration -Name "InitialCreate" -Project "src\Infrastructure" -Context "ApplicationDbContext" -StartupProject "src\SmartCity.Web" -OutputDir "Persistence\Migrations" -Verbose`
+`Add-Migration -Name "SampleMigration" -Project "src\Infrastructure" -Context "ApplicationDbContext" -StartupProject "src\SC.API.CleanArchitecture.Web" -OutputDir "Persistence\Migrations" -Verbose`
 
 ## Overview
 
